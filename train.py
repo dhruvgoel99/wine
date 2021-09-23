@@ -28,10 +28,13 @@ client = Minio(
     secret_key=minio_secret_access_key,
     secure=False
 )
+print(client)
+
 obj = client.get_object(
     "cml",
     "wine_quality.csv"
 )
+print(obj)
 df = pd.read_csv(obj)
 
 mlflow.set_tracking_uri(
