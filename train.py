@@ -22,24 +22,14 @@ seed = 42
 ################################
 
 # Load in the data
-client = Minio(
-    minio_uri,
-    access_key=minio_access_key,
-    secret_key=minio_secret_access_key,
-    secure=False
-)
+client = Minio(minio_uri,access_key=minio_access_key,secret_key=minio_secret_access_key,secure=False)
 print(client)
 
-obj = client.get_object(
-    "cml",
-    "wine_quality.csv"
-)
+obj = client.get_object("cml","wine_quality.csv")
 print(obj)
 df = pd.read_csv(obj)
 
-mlflow.set_tracking_uri(
-    mlflow_uri
-)
+mlflow.set_tracking_uri(mlflow_uri)
 
 experiment_id = mlflow.set_experiment("training experiment")
 
